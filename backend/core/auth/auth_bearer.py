@@ -52,7 +52,7 @@ class AuthBearer(HTTPBearer):
 
     def get_test_user(self) -> User:
         return User(
-            email="test@example.com", id="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"  # type: ignore
+            email="843139946@qq.com", id="897ac4a7-539f-4feb-954e-ec0955da81d2"  # type: ignore
         )  # replace with test user information
 
 

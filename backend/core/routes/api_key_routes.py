@@ -107,4 +107,5 @@ async def get_api_keys(
     """
 
     response = commons["db"].get_user_api_keys(current_user.id)
+    print("response", response)
     return response.data

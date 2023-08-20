@@ -71,6 +71,7 @@ async def filter_file(
 
     if file.file_extension in file_processors:
         try:
+            print("openai_api_key", openai_api_key)
             await file_processors[file.file_extension](
                 commons, file, enable_summarization, brain_id, openai_api_key
             )

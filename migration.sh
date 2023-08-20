@@ -42,7 +42,7 @@ CHOICE=$(gum choose --header "Choose an option" "Create all tables" "Run Migrati
 
 if [ "$CHOICE" == "Create all tables" ]; then
     # Running the tables.sql file to create tables
-    run_sql_file "scripts/tables.sql"
+    run_sql_file "scripts/pg_tables.sql"
 else
 
     # Get the last migration that was executed

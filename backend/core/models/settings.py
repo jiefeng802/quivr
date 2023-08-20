@@ -33,6 +33,12 @@ def common_dependencies() -> dict:
     embeddings = OpenAIEmbeddings(
         openai_api_key=settings.openai_api_key
     )  # pyright: ignore reportPrivateUsage=none
+    # proxy = {
+    #     'http': 'http://localhost:5050',
+    #     'https': 'http://localhost:5050'
+    # }
+
+    # embeddings.proxy = proxy
     supabase_client: Client = create_client(
         settings.supabase_url, settings.supabase_service_key
     )
