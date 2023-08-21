@@ -41,11 +41,15 @@ async def process_file(
         # add_usage(stats_db, "embedding", "audio", metadata={"file_name": file_meta_name,"file_type": ".txt", "chunk_size": chunk_size, "chunk_overlap": chunk_overlap})
 
         print("created_vector", created_vector)
-        created_vector_id = created_vector[0]  # pyright: ignore reportPrivateUsage=none
-        print("test", "test6")
+        if not created_vector:
+            print("created_vector", "null")
+            continue
+        else:
+            created_vector_id = created_vector[0]  # pyright: ignore reportPrivateUsage=none
+            print("test", "test6")
 
-        brain = Brain(id=brain_id)
-        brain.create_brain_vector(created_vector_id, file.file_sha1)
-        print("test", "test7")
+            brain = Brain(id=brain_id)
+            brain.create_brain_vector(created_vector_id, file.file_sha1)
+            print("test", "test7")
 
     return
