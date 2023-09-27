@@ -15,6 +15,7 @@ from supabase.client import Client, create_client
 from vectorstore.supabase import CustomSupabaseVectorStore
 from repository.chat.update_message_by_id import update_message_by_id
 import json
+import time
 
 from .base import BaseBrainPicking
 from .prompts.CONDENSE_PROMPT import CONDENSE_QUESTION_PROMPT
@@ -127,19 +128,27 @@ class QABaseBrainPicking(BaseBrainPicking):
         :param question: The question
         :return: The generated answer.
         """
-        transformed_history = []
+        # transformed_history = []
 
         # Get the history from the database
-        history = get_chat_history(self.chat_id)
+        # history = get_chat_history(self.chat_id)
 
         # Format the chat history into a list of tuples (human, ai)
-        transformed_history = format_chat_history(history)
+        # transformed_history = format_chat_history(history)
 
         # Generate the model response using the QA chain
-        model_response = self._call_chain(self.qa, question, transformed_history)
+        print("question", question)
+        start_time = time.time()  # 记录开始时间
+        # print("self.qa", self.qa)
+        model_response = self._call_chain(self.qa, question, [])
 
         answer = model_response["answer"]
 
+        print("answer", answer)
+        end_time = time.time()  # 记录结束时间
+        execution_time = end_time - start_time  # 计算执行时间
+        print(f"代码执行时间：{execution_time} 秒")
+        # print("execution_time", execution_time)
         # Update chat history
         chat_answer = update_chat_history(
             chat_id=self.chat_id,
